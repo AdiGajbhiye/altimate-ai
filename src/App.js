@@ -1,11 +1,19 @@
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
+import TodoForm from "./components/TodoForm";
 
 function App() {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/new" element={<TodoForm />} />
+        </Routes>
+      </BrowserRouter>
+      <Outlet />
+    </>
   );
 }
 

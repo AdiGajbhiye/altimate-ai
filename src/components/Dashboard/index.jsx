@@ -6,15 +6,33 @@ import TodoForm from "../TodoForm";
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
+  const [filteredtodos, setFilteredTodos] = useState([]);
   const [todoForm, setTodoForm] = useState({
     title: "",
     userId: "",
     completed: false,
   });
+  const [filter, setFilter] = useState({
+    isFilter: false,
+    userId: "",
+    completed: false,
+  });
 
   useEffect(() => {
-    fetchTodos().then((_todos) => setTodos(_todos));
+    fetchTodos().then((_todos) => {
+      setTodos(_todos);
+      setFilteredTodos(_todos);
+    });
   }, []);
+
+  useEffect(() => {
+    if (!filter.isFilter) return;
+    setFilteredTodos(
+      todos.filter(
+        (t) => t.completed === filter.completed || t.userId === filter.userId
+      )
+    );
+  }, [todos, filter]);
 
   const onSubmitTodo = async (values) => {
     if (typeof values.id === "undefined") {
@@ -40,7 +58,44 @@ const Dashboard = () => {
   return (
     <div className="page">
       <h1>Dashboard</h1>
-      <TodoTable todos={todos} onEdit={editTodo} onDelete={deleteTodo} />
+      <div>
+        <span>Filter by</span>
+        <label>
+          <span>IsFiter</span>
+          <input
+            type="checkbox"
+            checked={filter.isFilter}
+            onChange={() => setFilter((f) => ({ ...f, isFilter: !f.isFilter }))}
+          />
+        </label>
+        <label>
+          <span>UserId</span>
+          <input
+            type="text"
+            checked={filter.userId}
+            disabled={!filter.isFilter}
+            onChange={(e) =>
+              setFilter((f) => ({ ...f, userId: e.target.value }))
+            }
+          />
+        </label>
+        <label>
+          <span>Completed</span>
+          <input
+            type="checkbox"
+            checked={filter.completed}
+            disabled={!filter.isFilter}
+            onChange={() =>
+              setFilter((f) => ({ ...f, completed: !f.completed }))
+            }
+          />
+        </label>
+      </div>
+      <TodoTable
+        todos={filteredtodos}
+        onEdit={editTodo}
+        onDelete={deleteTodo}
+      />
       <TodoForm todo={todoForm} onSubmit={onSubmitTodo} />
     </div>
   );

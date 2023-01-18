@@ -10,19 +10,19 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Dashboard</h1>
-      <table>
-        <thead>
+      <table className="table">
+        <thead className="table-header">
           <tr>
-            <th>Title</th>
+            <th className="text-start">Title</th>
             <th>Complete</th>
           </tr>
         </thead>
         <tbody>
           {todos.map((todo) => (
             <tr>
-              <td>{todo.title}</td>
+              <td className="text-start">{todo.title}</td>
               <td>
                 <input type="checkbox" checked={todo.completed} />
               </td>

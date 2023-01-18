@@ -1,4 +1,4 @@
-const TodoTable = ({ todos }) => {
+const TodoTable = ({ todos, onEdit, onDelete }) => {
   return (
     <div className="container">
       <table className="table">
@@ -7,6 +7,7 @@ const TodoTable = ({ todos }) => {
             <th className="text-start">Title</th>
             <th>UserId</th>
             <th>Complete</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,24 @@ const TodoTable = ({ todos }) => {
               <td>{todo.userId}</td>
               <td>
                 <input type="checkbox" readOnly checked={todo.completed} />
+              </td>
+              <td>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onEdit(todo.id);
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onDelete(todo.id);
+                  }}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

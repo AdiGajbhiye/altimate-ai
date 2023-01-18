@@ -1,17 +1,5 @@
-.container {
+.page {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.table {
-  width: 80%;
-}
-
-.text-start {
-  text-align: start;
-}
-
-.table-header {
-  font-size: 1.4em;
 }

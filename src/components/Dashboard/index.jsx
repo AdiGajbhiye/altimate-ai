@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
-import { fetchTodos } from "../../services/http";
 import "./style.css";
+import { fetchTodos, postTodo } from "../../services/http";
+import { useEffect, useState } from "react";
+import TodoTable from "../TodoTable";
+import TodoForm from "../TodoForm";
 
 const Dashboard = () => {
   const [todos, setTodos] = useState([]);
@@ -9,27 +11,19 @@ const Dashboard = () => {
     fetchTodos().then((_todos) => setTodos(_todos));
   }, []);
 
+  const newTodo = async (values) => {
+    if (!values.id) {
+      const todo = await postTodo(values);
+      setTodos((_todos) => [..._todos, todo]);
+      return;
+    }
+  };
+
   return (
-    <div className="container">
+    <div className="page">
       <h1>Dashboard</h1>
-      <table className="table">
-        <thead className="table-header">
-          <tr>
-            <th className="text-start">Title</th>
-            <th>Complete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {todos.map((todo) => (
-            <tr>
-              <td className="text-start">{todo.title}</td>
-              <td>
-                <input type="checkbox" checked={todo.completed} />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <TodoTable todos={todos} />
+      <TodoForm onSubmit={newTodo} />
     </div>
   );
 };

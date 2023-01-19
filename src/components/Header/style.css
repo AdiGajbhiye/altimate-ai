@@ -1,0 +1,14 @@
+.header {
+  background-color: beige;
+  display: flex;
+  justify-content: center;
+}
+
+.header-item {
+  margin: 1.4em;
+  font-size: 1.2em;
+}
+
+.header-item:hover {
+  text-decoration: underline;
+}

@@ -24,6 +24,7 @@ const Paginate = () => {
         >
           Previous
         </button>
+        <div>Page {page + 1}</div>
         <button
           onClick={(e) => {
             e.preventDefault();

@@ -4,26 +4,29 @@
   align-items: center;
 }
 
-.todo-form {
+.todo_form {
   width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.todo-form-input {
+.form_container {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+  display: flex;
   margin: 0.4em;
 }
+.form_input {
+  flex-basis: 70%;
+  padding: 0.6em;
+}
 
-.todo-form-label {
+.form_label {
+  flex-basis: 30%;
   font-size: 1.2em;
   font-weight: 500;
 }
 
-.submit-button {
+.submit_button {
   margin: 0.8em;
   padding: 0.4em;
   font-size: 1.4em;

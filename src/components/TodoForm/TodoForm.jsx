@@ -1,7 +1,7 @@
 import { useContext, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TodoContext } from "../Layout";
-import "./style.css";
+import styles from "./style.module.css";
 
 const TodoForm2 = ({ todoForm, onSubmit }) => {
   const [todo, setTodo] = useState(todoForm);
@@ -15,7 +15,7 @@ const TodoForm2 = ({ todoForm, onSubmit }) => {
 
   return (
     <form
-      className="todo-form"
+      className={styles.todo_form}
       onSubmit={(e) => {
         e.preventDefault();
         const _userId = parseInt(userId);
@@ -23,28 +23,35 @@ const TodoForm2 = ({ todoForm, onSubmit }) => {
         onSubmit({ ...todo, userId: _userId });
       }}
     >
-      <label className="todo-form-input">
-        <span className="todo-form-label">Title</span>
+      <label className={styles.form_container}>
+        <span className={styles.form_label}>Title</span>
         <input
+          className={styles.form_input}
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
-      <label className="todo-form-input">
-        <span className="todo-form-label">UserId</span>
+      <label className={styles.form_container}>
+        <span className={styles.form_label}>UserId</span>
         <input
+          className={styles.form_input}
           type="text"
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
         />
       </label>
-      <label className="todo-form-input">
-        <span className="todo-form-label">Completed</span>
-        <input type="checkbox" checked={completed} onChange={setCompleted} />
+      <label className={styles.form_container}>
+        <span className={styles.form_label}>Completed</span>
+        <input
+          className={styles.form_input}
+          type="checkbox"
+          checked={completed}
+          onChange={setCompleted}
+        />
       </label>
 
-      <input type="submit" className="submit-button" value="SUBMIT" />
+      <input type="submit" className={styles.submit_button} value="SUBMIT" />
     </form>
   );
 };
@@ -79,7 +86,7 @@ const TodoForm = () => {
   }, [todoId, todos, addTodo, editTodo]);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h2>Todo Form</h2>
       <TodoForm2 key={todoId} todoForm={todo} onSubmit={onSubmit} />
     </div>

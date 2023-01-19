@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
+// using this helper function as in React 18, useEffect is run twice on component mount
 export const useEffectOnce = (effect) => {
   const destroyFunc = useRef();
   const effectCalled = useRef(false);
   const renderAfterCalled = useRef(false);
-  const [val, setVal] = useState(0);
+  const [_, setVal] = useState(0);
 
   if (effectCalled.current) {
     renderAfterCalled.current = true;

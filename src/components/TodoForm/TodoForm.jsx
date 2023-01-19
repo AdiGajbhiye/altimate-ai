@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { TodoContext } from "../Layout";
 import styles from "./style.module.css";
 
-const TodoForm2 = ({ todoForm, onSubmit }) => {
+const TodoForm = ({ todoForm, onSubmit }) => {
   const [todo, setTodo] = useState(todoForm);
 
   const { title, userId, completed } = todo;
@@ -56,7 +56,7 @@ const TodoForm2 = ({ todoForm, onSubmit }) => {
   );
 };
 
-const TodoForm = () => {
+const TodoFormPage = () => {
   const { todoId } = useParams();
   const { todos, addTodo, editTodo } = useContext(TodoContext);
 
@@ -88,9 +88,9 @@ const TodoForm = () => {
   return (
     <div className={styles.container}>
       <h2>Todo Form</h2>
-      <TodoForm2 key={todoId} todoForm={todo} onSubmit={onSubmit} />
+      <TodoForm key={todoId} todoForm={todo} onSubmit={onSubmit} />
     </div>
   );
 };
 
-export { TodoForm };
+export { TodoFormPage as TodoForm };

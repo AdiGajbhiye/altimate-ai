@@ -79,7 +79,7 @@ const TodoForm = () => {
   return (
     <div className="container">
       <h2>Todo Form</h2>
-      <TodoForm2 todoForm={todo} onSubmit={onSubmit} />
+      <TodoForm2 key={todoId} todoForm={todo} onSubmit={onSubmit} />
     </div>
   );
 };

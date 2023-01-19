@@ -1,6 +1,6 @@
 import "./style.css";
 import { useContext, useMemo, useState } from "react";
-import TodoTable from "../TodoTable";
+import { TodoTable } from "../TodoTable";
 import { TodoContext } from "../Layout";
 
 const Dashboard = () => {

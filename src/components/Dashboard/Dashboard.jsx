@@ -6,29 +6,41 @@ import { TodoContext } from "../Layout";
 const Dashboard = () => {
   const { todos, deleteTodo } = useContext(TodoContext);
   const [filter, setFilter] = useState({
-    isFilter: false,
+    filterByUserId: false,
+    filterByCompleted: false,
     userId: "",
     completed: false,
   });
 
   const filteredtodos = useMemo(() => {
-    if (!filter.isFilter) return todos;
-    return todos.filter(
-      (t) => t.completed === filter.completed || t.userId === filter.userId
-    );
+    let _filteredtodos = todos;
+    if (filter.filterByUserId) {
+      const _userId = parseInt(filter.userId);
+      if (!isNaN(_userId)) {
+        _filteredtodos = _filteredtodos.filter((t) => t.userId === _userId);
+      }
+    }
+    if (filter.filterByCompleted) {
+      _filteredtodos = _filteredtodos.filter(
+        (t) => t.completed === filter.completed
+      );
+    }
+    return _filteredtodos;
   }, [todos, filter]);
 
   return (
     <div className="page">
       <h1>Dashboard</h1>
       <div>
-        <span>Filter by</span>
+        <span>Filter</span>
         <label>
-          <span>IsFiter</span>
+          <span>By userId</span>
           <input
             type="checkbox"
-            checked={filter.isFilter}
-            onChange={() => setFilter((f) => ({ ...f, isFilter: !f.isFilter }))}
+            checked={filter.filterByUserId}
+            onChange={() =>
+              setFilter((f) => ({ ...f, filterByUserId: !f.filterByUserId }))
+            }
           />
         </label>
         <label>
@@ -36,9 +48,22 @@ const Dashboard = () => {
           <input
             type="text"
             checked={filter.userId}
-            disabled={!filter.isFilter}
+            disabled={!filter.filterByUserId}
             onChange={(e) =>
               setFilter((f) => ({ ...f, userId: e.target.value }))
+            }
+          />
+        </label>
+        <label>
+          <span>By completed</span>
+          <input
+            type="checkbox"
+            checked={filter.filterByCompleted}
+            onChange={() =>
+              setFilter((f) => ({
+                ...f,
+                filterByCompleted: !f.filterByCompleted,
+              }))
             }
           />
         </label>
@@ -47,7 +72,7 @@ const Dashboard = () => {
           <input
             type="checkbox"
             checked={filter.completed}
-            disabled={!filter.isFilter}
+            disabled={!filter.filterByCompleted}
             onChange={() =>
               setFilter((f) => ({ ...f, completed: !f.completed }))
             }

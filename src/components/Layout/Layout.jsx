@@ -37,6 +37,7 @@ const Layout = () => {
     <TodoContext.Provider value={{ todos, addTodo, editTodo, deleteTodo }}>
       <div className="container">
         <Header />
+        {todos.length === 0 && <div>Loading...</div>}
         {todos.length > 0 && <Outlet />}
       </div>
     </TodoContext.Provider>

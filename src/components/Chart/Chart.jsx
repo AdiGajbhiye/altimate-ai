@@ -61,10 +61,10 @@ const BarChart = () => {
 
   return (
     <div className={styles.page}>
-      <h2>Chart</h2>
+      <h1>Chart</h1>
       <div className={styles.container}>
         <canvas ref={ref} id="mychart" />
-        <div>
+        <div className={styles.filter}>
           <div>Filter By</div>
           {Object.keys(filter).map((userId) => (
             <div key={userId}>

@@ -1,9 +1,21 @@
 .page {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 80%;
 }
 
 .container {
+  width: 100%;
   display: flex;
   flex-direction: row;
+}
+
+.filter {
+  width: 20%;
+}
+
+#mychart {
+  width: 80%;
 }

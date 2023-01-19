@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Chart } from "./components/Chart";
+import { BarChart } from "./components/Chart";
 import { Dashboard } from "./components/Dashboard";
 import { Layout } from "./components/Layout";
 import { Paginate } from "./components/Paginate";
@@ -15,7 +15,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="form/:todoId" element={<TodoForm />} />
             <Route path="form" element={<TodoForm />} />
-            <Route path="chart" element={<Chart />} />
+            <Route path="chart" element={<BarChart />} />
             <Route path="paginate" element={<Paginate />} />
           </Route>
         </Routes>

@@ -2,7 +2,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Chart, registerables } from "chart.js";
 import { useEffectOnce } from "../../utils/helper";
 import { TodoContext } from "../Layout";
-import "./style.css";
+import styles from "./style.module.css";
 
 const BarChart = () => {
   const ref = useRef();
@@ -60,9 +60,9 @@ const BarChart = () => {
   }, [todos, chart, filter]);
 
   return (
-    <div className="page">
+    <div className={styles.page}>
       <h2>Chart</h2>
-      <div className="container_1">
+      <div className={styles.container}>
         <canvas ref={ref} id="mychart" />
         <div>
           <div>Filter By</div>

@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
+import styles from "./style.module.css";
 
 const TodoTable = ({ todos, onDelete }) => {
   const navigate = useNavigate();
   return (
-    <div className="container">
-      <table className="table">
-        <thead className="table-header">
-          <tr>
-            <th className="text-start">Title</th>
+    <div className={styles.container}>
+      <table className={styles.table}>
+        <thead className={styles.table_header}>
+          <tr className={styles.table_row}>
+            <th>Title</th>
             <th>UserId</th>
             <th>Complete</th>
             <th>Action</th>
@@ -15,8 +16,8 @@ const TodoTable = ({ todos, onDelete }) => {
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr key={todo.id}>
-              <td className="text-start">{todo.title}</td>
+            <tr key={todo.id} className={styles.table_row}>
+              <td>{todo.title}</td>
               <td>{todo.userId}</td>
               <td>
                 <input type="checkbox" readOnly checked={todo.completed} />

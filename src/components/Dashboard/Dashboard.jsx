@@ -1,4 +1,4 @@
-import "./style.css";
+import styles from "./style.module.css";
 import { useContext, useMemo, useState } from "react";
 import { TodoTable } from "../TodoTable";
 import { TodoContext } from "../Layout";
@@ -29,55 +29,58 @@ const Dashboard = () => {
   }, [todos, filter]);
 
   return (
-    <div className="page">
+    <div className={styles.page}>
       <h1>Dashboard</h1>
-      <div>
-        <span>Filter</span>
-        <label>
-          <span>By userId</span>
-          <input
-            type="checkbox"
-            checked={filter.filterByUserId}
-            onChange={() =>
-              setFilter((f) => ({ ...f, filterByUserId: !f.filterByUserId }))
-            }
-          />
-        </label>
-        <label>
-          <span>UserId</span>
-          <input
-            type="text"
-            checked={filter.userId}
-            disabled={!filter.filterByUserId}
-            onChange={(e) =>
-              setFilter((f) => ({ ...f, userId: e.target.value }))
-            }
-          />
-        </label>
-        <label>
-          <span>By completed</span>
-          <input
-            type="checkbox"
-            checked={filter.filterByCompleted}
-            onChange={() =>
-              setFilter((f) => ({
-                ...f,
-                filterByCompleted: !f.filterByCompleted,
-              }))
-            }
-          />
-        </label>
-        <label>
-          <span>Completed</span>
-          <input
-            type="checkbox"
-            checked={filter.completed}
-            disabled={!filter.filterByCompleted}
-            onChange={() =>
-              setFilter((f) => ({ ...f, completed: !f.completed }))
-            }
-          />
-        </label>
+      <div className={styles.filter}>
+        <div className={styles.filter_elem}>
+          <label>
+            <input
+              type="checkbox"
+              checked={filter.filterByUserId}
+              onChange={() =>
+                setFilter((f) => ({ ...f, filterByUserId: !f.filterByUserId }))
+              }
+            />
+            <span>Filter by userId</span>
+          </label>
+          <label className={styles.filter_form}>
+            <span>UserId</span>
+            <input
+              type="text"
+              checked={filter.userId}
+              disabled={!filter.filterByUserId}
+              onChange={(e) =>
+                setFilter((f) => ({ ...f, userId: e.target.value }))
+              }
+            />
+          </label>
+        </div>
+        <div className={styles.filter_elem}>
+          <label>
+            <input
+              type="checkbox"
+              checked={filter.filterByCompleted}
+              onChange={() =>
+                setFilter((f) => ({
+                  ...f,
+                  filterByCompleted: !f.filterByCompleted,
+                }))
+              }
+            />
+            <span>Filter by completed</span>
+          </label>
+          <label className={styles.filter_form}>
+            <span>Completed</span>
+            <input
+              type="checkbox"
+              checked={filter.completed}
+              disabled={!filter.filterByCompleted}
+              onChange={() =>
+                setFilter((f) => ({ ...f, completed: !f.completed }))
+              }
+            />
+          </label>
+        </div>
       </div>
       <TodoTable todos={filteredtodos} onDelete={deleteTodo} />
     </div>

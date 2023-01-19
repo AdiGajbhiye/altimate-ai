@@ -1,0 +1,34 @@
+.paginate {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.paginate button {
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  min-width: 10%;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+}
+
+.filter {
+  width: 100%;
+  font-size: 1.2rem;
+  margin: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter input {
+  padding: 0.4rem;
+  flex-basis: 60%;
+}

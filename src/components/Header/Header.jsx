@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
-import "./style.css";
+import styles from "./style.module.css";
 
 const Header = () => {
   return (
-    <div className="header">
-      <Link to="/dashboard" className="header-item">
+    <div className={styles.header}>
+      <Link to="/dashboard" className={styles.header_item}>
         Dashboard
       </Link>
-      <Link to="/form" className="header-item">
+      <Link to="/form" className={styles.header_item}>
         Form
       </Link>
-      <Link to="/chart" className="header-item">
+      <Link to="/chart" className={styles.header_item}>
         Chart
       </Link>
-      <Link to="/paginate" className="header-item">
+      <Link to="/paginate" className={styles.header_item}>
         Paginate
       </Link>
     </div>

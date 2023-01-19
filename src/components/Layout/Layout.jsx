@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { fetchTodos, postTodo } from "../../services/http";
 import { useEffectOnce } from "../../utils/helper";
 import { Header } from "../Header";
+import styles from "./style.module.css";
 
 const TodoContext = createContext({
   todos: [],
@@ -40,10 +41,9 @@ const Layout = () => {
 
   return (
     <TodoContext.Provider value={{ todos, addTodo, editTodo, deleteTodo }}>
-      <div className="container">
+      <div className={styles.page}>
         <Header />
-        {todos.length === 0 && <div>Loading...</div>}
-        {todos.length > 0 && <Outlet />}
+        {todos.length === 0 ? <div>Loading...</div> : <Outlet />}
       </div>
     </TodoContext.Provider>
   );

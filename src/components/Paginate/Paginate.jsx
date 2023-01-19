@@ -1,7 +1,7 @@
 import { useContext, useMemo, useState } from "react";
 import { TodoContext } from "../Layout";
 import { TodoTable } from "../TodoTable";
-import "./style.css";
+import styles from "./style.module.css";
 
 const PAGE_LIMIT = 10;
 
@@ -13,9 +13,9 @@ const Paginate = () => {
   }, [todos, filter]);
   const [page, setPage] = useState(0);
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h1>Paginate</h1>
-      <div className="paginate">
+      <div className={styles.paginate}>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -36,8 +36,8 @@ const Paginate = () => {
           Next
         </button>
       </div>
-      <label>
-        Filter by title
+      <label className={styles.filter}>
+        Filter by title:
         <input value={filter} onChange={(e) => setFilter(e.target.value)} />
       </label>
       <TodoTable

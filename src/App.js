@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Chart } from "./components/Chart";
-import Dashboard from "./components/Dashboard";
+import { Dashboard } from "./components/Dashboard";
 import { Layout } from "./components/Layout";
 import { Paginate } from "./components/Paginate";
-import TodoForm from "./components/TodoForm";
+import { TodoForm } from "./components/TodoForm";
 
 function App() {
   return (

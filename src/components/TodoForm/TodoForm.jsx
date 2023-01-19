@@ -1,13 +1,7 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TodoContext } from "../Layout";
 import "./style.css";
-
-const getDefaultTodo = () => ({
-  title: "",
-  userId: "",
-  completed: false,
-});
 
 const TodoForm2 = ({ todoForm, onSubmit }) => {
   const [todo, setTodo] = useState(todoForm);
@@ -58,12 +52,27 @@ const TodoForm = () => {
   const { todos, addTodo, editTodo } = useContext(TodoContext);
 
   const { todo, onSubmit } = useMemo(() => {
-    const defaultForm = { todo: getDefaultTodo, onSubmit: addTodo };
+    const defaultForm = {
+      todo: {
+        title: "",
+        userId: "",
+        completed: false,
+      },
+      onSubmit: addTodo,
+    };
+
+    // show add todo form
     if (typeof todoId === "undefined") return defaultForm;
+
     const _todoId = parseInt(todoId);
+    // if param is not an integer, then show add todo form
     if (isNaN(_todoId)) return defaultForm;
+
     const _todo = todos.find((todo) => todo.id === _todoId);
+    // if unable to find todo in list, then show add todo form
     if (!_todo) return defaultForm;
+
+    // show edit todo form
     return { todo: _todo, editTodo };
   }, [todoId, todos, addTodo, editTodo]);
 
@@ -75,4 +84,4 @@ const TodoForm = () => {
   );
 };
 
-export default TodoForm;
+export { TodoForm };

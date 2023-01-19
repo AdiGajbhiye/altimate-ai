@@ -18,7 +18,9 @@ const TodoForm2 = ({ todoForm, onSubmit }) => {
       className="todo-form"
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit(todo);
+        const _userId = parseInt(userId);
+        if (isNaN(_userId)) return;
+        onSubmit({ ...todo, userId: _userId });
       }}
     >
       <label className="todo-form-input">
@@ -73,7 +75,7 @@ const TodoForm = () => {
     if (!_todo) return defaultForm;
 
     // show edit todo form
-    return { todo: _todo, editTodo };
+    return { todo: _todo, onSubmit: editTodo };
   }, [todoId, todos, addTodo, editTodo]);
 
   return (

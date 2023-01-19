@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { BarChart } from "./components/Chart";
 import { Dashboard } from "./components/Dashboard";
@@ -17,6 +17,8 @@ function App() {
             <Route path="form" element={<TodoForm />} />
             <Route path="chart" element={<BarChart />} />
             <Route path="paginate" element={<Paginate />} />
+            <Route path="*" element={<Navigate to="/dashboard" />} />
+            <Route path="/" element={<Navigate to="/dashboard" />} />
           </Route>
         </Routes>
       </BrowserRouter>

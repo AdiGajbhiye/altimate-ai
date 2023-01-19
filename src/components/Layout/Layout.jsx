@@ -1,6 +1,7 @@
-import { createContext, useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { createContext, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import { fetchTodos, postTodo } from "../../services/http";
+import { useEffectOnce } from "../../utils/helper";
 import { Header } from "../Header";
 
 const TodoContext = createContext({
@@ -11,8 +12,9 @@ const TodoContext = createContext({
 });
 
 const Layout = () => {
+  const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
-  useEffect(() => {
+  useEffectOnce(() => {
     fetchTodos().then((_todos) => {
       setTodos(_todos);
     });
@@ -21,16 +23,19 @@ const Layout = () => {
   const addTodo = async (values) => {
     const todo = await postTodo(values);
     setTodos((_todos) => [..._todos, todo]);
+    navigate("/dashboard");
   };
 
   const editTodo = async (values) => {
     setTodos((_todos) =>
       _todos.map((todo) => (todo.id === values.id ? values : todo))
     );
+    navigate("/dashboard");
   };
 
   const deleteTodo = (id) => {
     setTodos((_todos) => _todos.filter((todo) => todo.id !== id));
+    navigate("/dashboard");
   };
 
   return (

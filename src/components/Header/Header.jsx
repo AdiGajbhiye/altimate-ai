@@ -1,12 +1,21 @@
+import { Link } from "react-router-dom";
 import "./style.css";
 
 const Header = () => {
   return (
     <div className="header">
-      <div className="header-item">Dashboard</div>
-      <div className="header-item">Form</div>
-      <div className="header-item">Chart</div>
-      <div className="header-item">Paginate</div>
+      <Link to="/dashboard" className="header-item">
+        Dashboard
+      </Link>
+      <Link to="/form" className="header-item">
+        Form
+      </Link>
+      <Link to="/chart" className="header-item">
+        Chart
+      </Link>
+      <Link to="/paginate" className="header-item">
+        Paginate
+      </Link>
     </div>
   );
 };

@@ -1,4 +1,7 @@
-const TodoTable = ({ todos, onEdit, onDelete }) => {
+import { useNavigate } from "react-router-dom";
+
+const TodoTable = ({ todos, onDelete }) => {
+  const navigate = useNavigate();
   return (
     <div className="container">
       <table className="table">
@@ -22,7 +25,7 @@ const TodoTable = ({ todos, onEdit, onDelete }) => {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    onEdit(todo.id);
+                    navigate(`/form/${todo.id}`);
                   }}
                 >
                   Edit
